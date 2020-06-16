@@ -15,7 +15,7 @@ module.exports = {
             collection: 'cuts',
             map: doc => ({
               client: doc.client,
-              author___NODE: doc.barber.id,
+              barber___NODE: doc.barber.id,
             }),
           },
           {

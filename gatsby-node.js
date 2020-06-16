@@ -1,7 +1,34 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path');
 
-// You can delete this file if you're not using it
+exports.createPages = ({ graphql, actions }) => {
+    const { createPage } = actions;
+    const cutTemplate = path.resolve('src/templates/cutTemplate.js');
+
+    return graphql(`
+    {
+        allCut {
+          edges {
+            node {
+              barber {
+                name
+              }
+              client
+              id
+            }
+          }
+        }
+      }
+    `).then((result) => {
+        if (result.errors) {
+            throw result.errors;
+        }
+
+        result.data.allCut.edges.forEach(cut => {
+            createPage({
+                path: `/cut/${cut.node.id}`,
+                component: cutTemplate,
+                context: cut.node
+            })
+        });
+    })
+}
