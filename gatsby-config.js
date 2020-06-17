@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     {
       resolve: 'gatsby-firesource',
       options: {
@@ -15,6 +16,7 @@ module.exports = {
             collection: 'cuts',
             map: doc => ({
               client: doc.client,
+              summary: doc.summary,
               barber___NODE: doc.barber.id,
             }),
           },

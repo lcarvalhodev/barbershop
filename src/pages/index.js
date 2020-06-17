@@ -5,6 +5,8 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+import CutItem from "../components/cutItem"
+
 const IndexPage = (props) => {
 
   console.log(props);
@@ -12,14 +14,14 @@ const IndexPage = (props) => {
     < Layout >
       {
         props.data.allCut.edges.map(edge => (
-          <div key={edge.node.id}>
+          <CutItem key={edge.node.id}>
             <h2>
               {edge.node.client} - <small>{edge.node.barber.name}</small>
             </h2>
             <Link to={`/cut/${edge.node.id}`}>
               Join Conversation
           </Link>
-          </div>
+          </CutItem>
         ))
       }
     </Layout >
@@ -36,6 +38,7 @@ export const query = graphql`
         }
         client
         id
+        summary
       }
     }
   }

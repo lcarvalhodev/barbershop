@@ -2,15 +2,20 @@ import React from 'react';
 
 import Layout from "../components/layout"
 
+import CutItem from "../components/cutItem"
+
 const CutTemplate = (props) => {
+    console.log(props)
     return (
         <Layout>
-            <h2>
-                {props.pageContext.client} - <small>{props.pageContext.barber.name}</small>
-            </h2>
-            <p>
-                Conteúdo sobre o corte, a definir com cliente.
-            </p>
+            <CutItem>
+                <h2>
+                    {props.pageContext.client} - <small>{props.pageContext.barber.name}</small>
+                </h2>
+                <p>
+                    {props.pageContext.summary}
+                </p>
+            </CutItem>
         </Layout>
     )
 
