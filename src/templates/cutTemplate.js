@@ -1,10 +1,17 @@
 import React from 'react';
 
-const CutTemplate = () => {
+import Layout from "../components/layout"
+
+const CutTemplate = (props) => {
     return (
-        <div>
-            Cut Page
-        </div>
+        <Layout>
+            <h2>
+                {props.pageContext.client} - <small>{props.pageContext.barber.name}</small>
+            </h2>
+            <p>
+                Conteúdo sobre o corte, a definir com cliente.
+            </p>
+        </Layout>
     )
 
 }
