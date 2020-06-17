@@ -1,10 +1,10 @@
 const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
-    const { createPage } = actions;
-    const cutTemplate = path.resolve('src/templates/cutTemplate.js');
+  const { createPage } = actions;
+  const cutTemplate = path.resolve('src/templates/cutTemplate.js');
 
-    return graphql(`
+  return graphql(`
     {
         allCut {
           edges {
@@ -14,21 +14,22 @@ exports.createPages = ({ graphql, actions }) => {
               }
               client
               id
+              summary
             }
           }
         }
       }
     `).then((result) => {
-        if (result.errors) {
-            throw result.errors;
-        }
+    if (result.errors) {
+      throw result.errors;
+    }
 
-        result.data.allCut.edges.forEach(cut => {
-            createPage({
-                path: `/cut/${cut.node.id}`,
-                component: cutTemplate,
-                context: cut.node
-            })
-        });
-    })
+    result.data.allCut.edges.forEach(cut => {
+      createPage({
+        path: `/cut/${cut.node.id}`,
+        component: cutTemplate,
+        context: cut.node
+      })
+    });
+  })
 }
