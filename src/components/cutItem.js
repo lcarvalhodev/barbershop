@@ -7,6 +7,7 @@ const CutItemWrapper = styled.section`
     padding: 8px;
     margin-bottom: 8px;
     background: white;
+    display: flex;
 
     h2{
         small{
@@ -17,18 +18,36 @@ const CutItemWrapper = styled.section`
     }
 `;
 
-const CutItem = ({ client, barberName, summary, children }) => {
+const BookItemImageWrapper = styled.div`
+    max-width: 200px;
+
+    img{
+        max-width: 200px;
+    }
+`;
+
+const BookItemContentWrapper = styled.div`
+    flex-grow: 1;
+    padding-left: 8px;
+`;
+
+const CutItem = ({ client, barberName, summary, cutImage, children }) => {
     return (
         <CutItemWrapper>
-            <h2>
-                {client} <small>{barberName}</small>
-            </h2>
-            <p>
-                {summary}
-            </p>
-            <div>
-                {children}
-            </div>
+            <BookItemImageWrapper>
+                <img src={cutImage} alt="Cut Image" />
+            </BookItemImageWrapper>
+            <BookItemContentWrapper>
+                <h2>
+                    {client} <small>{barberName}</small>
+                </h2>
+                <p>
+                    {summary}
+                </p>
+                <div>
+                    {children}
+                </div>
+            </BookItemContentWrapper>
         </CutItemWrapper>
     )
 }

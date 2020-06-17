@@ -9,6 +9,7 @@ const CutTemplate = (props) => {
     return (
         <Layout>
             <CutItem
+                cutImage={props.pageContext.imageUrl}
                 client={props.pageContext.client}
                 barberName={props.pageContext.barber.name}
                 summary={props.pageContext.summary} />

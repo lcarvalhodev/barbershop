@@ -33,6 +33,7 @@ const IndexPage = (props) => {
       {
         props.data.allCut.edges.map(edge => (
           <CutItem
+            cutImage={edge.node.imageUrl}
             client={edge.node.client}
             barberName={edge.node.barber.name}
             summary={edge.node.summary}
@@ -60,6 +61,7 @@ export const query = graphql`
         client
         id
         summary
+        imageUrl
       }
     }
   }

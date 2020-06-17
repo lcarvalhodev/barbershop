@@ -17,6 +17,7 @@ module.exports = {
             map: doc => ({
               client: doc.client,
               summary: doc.summary,
+              imageUrl: doc.imageUrl,
               barber___NODE: doc.barber.id,
             }),
           },
