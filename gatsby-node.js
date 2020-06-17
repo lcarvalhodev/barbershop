@@ -14,7 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
               client
               id
-              summary
+              summary 
             }
           }
         }

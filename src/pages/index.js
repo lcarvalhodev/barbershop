@@ -7,6 +7,24 @@ import SEO from "../components/seo"
 
 import CutItem from "../components/cutItem"
 
+import styled from 'styled-components'
+
+
+const LinkButton = styled.div`
+  text-align: right;
+
+  a {
+    padding: 8px;
+    background: rebeccaPurple;
+    color: white;
+    border-radius: 8px;
+
+    &:hover{
+      background: indigo;
+    }
+  }
+`
+
 const IndexPage = (props) => {
 
   console.log(props);
@@ -14,13 +32,16 @@ const IndexPage = (props) => {
     < Layout >
       {
         props.data.allCut.edges.map(edge => (
-          <CutItem key={edge.node.id}>
-            <h2>
-              {edge.node.client} - <small>{edge.node.barber.name}</small>
-            </h2>
-            <Link to={`/cut/${edge.node.id}`}>
-              Join Conversation
-          </Link>
+          <CutItem
+            client={edge.node.client}
+            barberName={edge.node.barber.name}
+            summary={edge.node.summary}
+            key={edge.node.id}>
+            <LinkButton>
+              <Link to={`/cut/${edge.node.id}`}>
+                Join Conversation
+              </Link>
+            </LinkButton>
           </CutItem>
         ))
       }

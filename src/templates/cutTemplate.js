@@ -8,14 +8,10 @@ const CutTemplate = (props) => {
     console.log(props)
     return (
         <Layout>
-            <CutItem>
-                <h2>
-                    {props.pageContext.client} - <small>{props.pageContext.barber.name}</small>
-                </h2>
-                <p>
-                    {props.pageContext.summary}
-                </p>
-            </CutItem>
+            <CutItem
+                client={props.pageContext.client}
+                barberName={props.pageContext.barber.name}
+                summary={props.pageContext.summary} />
         </Layout>
     )
 
