@@ -29,7 +29,7 @@ const IndexPage = (props) => {
 
   console.log(props);
   return (
-    < Layout >
+    < section >
       {
         props.data.allCut.edges.map(edge => (
           <CutItem
@@ -46,7 +46,7 @@ const IndexPage = (props) => {
           </CutItem>
         ))
       }
-    </Layout >
+    </section >
   );
 }
 

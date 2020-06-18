@@ -1,14 +1,14 @@
-import React, { useState } from "react"
-import { Link } from "gatsby"
-import { useAuth } from '../components/Firebase'
+import React, { useState, useContext } from "react"
+import { FirebaseContext } from '../components/Firebase'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { Form } from '../components/common/form'
+import { Input } from '../components/common/input'
+import { Button } from '../components/common/button'
 
-const SecondPage = () => {
+const Login = () => {
 
     const [formValues, setFormValues] = useState({ email: '', password: '' });
-    const { firebase } = useAuth();
+    const { firebase } = useContext(FirebaseContext);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -25,17 +25,17 @@ const SecondPage = () => {
     }
 
     return (
-        <Layout>
-            <form onSubmit={handleSubmit}>
-                <input value={formValues.email} name="email" onChange={handleInputChange} placeholder="email" type="email" />
-                <input value={formValues.password} name="password" onChange={handleInputChange} placeholder="password" type="password" />
-                <button type="submit">
+        <section>
+            <Form onSubmit={handleSubmit}>
+                <Input value={formValues.email} name="email" onChange={handleInputChange} placeholder="email" type="email" />
+                <Input value={formValues.password} name="password" onChange={handleInputChange} placeholder="password" type="password" />
+                <Button type="submit" block>
                     Log in
-                </button>
-            </form>
-        </Layout>
+                </Button>
+            </Form>
+        </section>
     );
 }
 
 
-export default SecondPage
+export default Login

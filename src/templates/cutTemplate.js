@@ -9,13 +9,13 @@ import { graphql } from "gatsby"
 const CutTemplate = (props) => {
     console.log(props.data);
     return (
-        <Layout>
+        <section>
             <CutItem
                 cutImage={props.data.cut.localImage.childImageSharp.fixed}
                 client={props.data.cut.client}
                 barberName={props.data.cut.barber.name}
                 summary={props.data.cut.summary} />
-        </Layout>
+        </section>
     )
 
 }
