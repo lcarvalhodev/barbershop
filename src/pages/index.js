@@ -33,7 +33,7 @@ const IndexPage = (props) => {
       {
         props.data.allCut.edges.map(edge => (
           <CutItem
-            cutImage={edge.node.imageUrl}
+            cutImage={edge.node.localImage.childImageSharp.fixed}
             client={edge.node.client}
             barberName={edge.node.barber.name}
             summary={edge.node.summary}
@@ -61,7 +61,13 @@ export const query = graphql`
         client
         id
         summary
-        imageUrl
+        localImage{
+          childImageSharp{
+            fixed(width: 200){
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
       }
     }
   }

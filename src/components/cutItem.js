@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Img from 'gatsby-image'
+
 
 const CutItemWrapper = styled.section`
     border: 1px solid #ddd;
@@ -35,7 +37,7 @@ const CutItem = ({ client, barberName, summary, cutImage, children }) => {
     return (
         <CutItemWrapper>
             <BookItemImageWrapper>
-                <img src={cutImage} alt="Cut Image" />
+                <Img fixed={cutImage} />
             </BookItemImageWrapper>
             <BookItemContentWrapper>
                 <h2>

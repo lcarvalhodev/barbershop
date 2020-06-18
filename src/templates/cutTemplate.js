@@ -4,18 +4,42 @@ import Layout from "../components/layout"
 
 import CutItem from "../components/cutItem"
 
+import { graphql } from "gatsby"
+
 const CutTemplate = (props) => {
-    console.log(props)
+    console.log(props.data);
     return (
         <Layout>
             <CutItem
-                cutImage={props.pageContext.imageUrl}
-                client={props.pageContext.client}
-                barberName={props.pageContext.barber.name}
-                summary={props.pageContext.summary} />
+                cutImage={props.data.cut.localImage.childImageSharp.fixed}
+                client={props.data.cut.client}
+                barberName={props.data.cut.barber.name}
+                summary={props.data.cut.summary} />
         </Layout>
     )
 
 }
+
+export const query = graphql`
+
+    query CutQuery($cutId: String!) {
+        cut(id: {eq: $cutId}){
+            barber {
+                name
+            }
+            client
+            id
+            summary
+            localImage{
+                childImageSharp{
+                    fixed(width: 200){
+                    ...GatsbyImageSharpFixed
+                    }
+                }
+            }
+        }
+    }
+
+`;
 
 export default CutTemplate

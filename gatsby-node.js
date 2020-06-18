@@ -9,12 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
         allCut {
           edges {
             node {
-              barber {
-                name
-              }
-              client
               id
-              summary 
             }
           }
         }
@@ -28,7 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: `/cut/${cut.node.id}`,
         component: cutTemplate,
-        context: cut.node
+        context: { cutId: cut.node.id }
       })
     });
   })
