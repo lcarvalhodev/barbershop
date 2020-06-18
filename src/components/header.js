@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import { Firebasecontext, FirebaseContext } from './Firebase'
 
 const Header = ({ siteTitle }) => (
   <header
@@ -27,6 +28,14 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <FirebaseContext.Consumer>
+        {props => {
+          console.log(props)
+          return <div>
+
+          </div>
+        }}
+      </FirebaseContext.Consumer>
     </div>
   </header>
 )
