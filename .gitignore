@@ -68,3 +68,4 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 firebase.json
+src/components/Firebase/config.js
