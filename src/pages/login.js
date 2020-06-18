@@ -1,9 +1,7 @@
 import React, { useState, useContext } from "react"
 import { FirebaseContext } from '../components/Firebase'
 
-import { Form } from '../components/common/form'
-import { Input } from '../components/common/input'
-import { Button } from '../components/common/button'
+import { Form, Input, Button } from '../components/common'
 
 const Login = () => {
 

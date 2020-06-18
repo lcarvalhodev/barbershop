@@ -54,6 +54,12 @@ const LoginLink = styled.div`
       
 `;
 
+const Divider = styled.span`
+      margin: 0 8px;
+      padding-right: 1px;
+      background: #ddd;
+`;
+
 
 const Header = ({ siteTitle }) => {
 
@@ -88,6 +94,10 @@ const Header = ({ siteTitle }) => {
             <LoginLink>
               <Link to="/login">
                 Login
+              </Link>
+              <Divider />
+              <Link to="/register">
+                Register
               </Link>
             </LoginLink>}
         </div>
