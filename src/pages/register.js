@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { Form, Input, Button } from '../components/common'
+import { Form, Input, Button, ErrorMessage } from '../components/common'
 import { FirebaseContext } from '../components/Firebase'
 
 const Register = () => {
 
     const [formValues, setFormValues] = useState({ email: '', password: '', confirmPassword: '' });
     const { firebase } = useContext(FirebaseContext);
+    const [errorMessage, setErrorMessage] = useState('');
 
     function handleInputChange(e) {
         e.persist();
+        setErrorMessage('');
         setFormValues(currentValues => ({
             ...currentValues,
             [e.target.name]: e.target.value
@@ -22,7 +24,12 @@ const Register = () => {
             firebase.register({
                 email: formValues.email,
                 password: formValues.password
+            }).catch(error => {
+                setErrorMessage('Não foi posssível concluir o cadastro, utilize um email não cadastrado e uma senha com mais de 6 dígitos.');
             })
+        }
+        else {
+            setErrorMessage('Senha e confirmação devem ser iguais.')
         }
     }
 
@@ -30,8 +37,13 @@ const Register = () => {
     return (
         <Form onSubmit={handleSubmit}>
             <Input onChange={handleInputChange} value={formValues.email} placeholder="email" type="email" required name="email" />
-            <Input onChange={handleInputChange} value={formValues.password} placeholder="password" type="password" required minLength={3} name="password" />
-            <Input onChange={handleInputChange} value={formValues.confirmPassword} placeholder="confirm password" type="email" required minLength={3} name="confirmPassword" />
+            <Input onChange={handleInputChange} value={formValues.password} placeholder="password" type="password" required minLength={6} name="password" />
+            <Input onChange={handleInputChange} value={formValues.confirmPassword} placeholder="confirm password" type="email" required minLength={6} name="confirmPassword" />
+            {!!errorMessage &&
+                <ErrorMessage>
+                    {errorMessage}
+                </ErrorMessage>
+            }
             <Button type="submit" block>
                 Register
             </Button>
