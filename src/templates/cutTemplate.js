@@ -1,13 +1,12 @@
 import React from 'react';
 
-import Layout from "../components/layout"
-
 import CutItem from "../components/cutItem"
+
+import { CutComments } from "../components/common"
 
 import { graphql } from "gatsby"
 
 const CutTemplate = (props) => {
-    console.log(props.data);
     return (
         <section>
             <CutItem
@@ -15,9 +14,9 @@ const CutTemplate = (props) => {
                 client={props.data.cut.client}
                 barberName={props.data.cut.barber.name}
                 summary={props.data.cut.summary} />
+            <CutComments />
         </section>
     )
-
 }
 
 export const query = graphql`

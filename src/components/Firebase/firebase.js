@@ -1,5 +1,4 @@
 import firebaseConfig from "./config";
-import axios from 'axios';
 
 class Firebase {
   constructor(app) {
@@ -23,6 +22,11 @@ class Firebase {
       userId: newUser.user.uid,
       fone: fone
     })
+  }
+
+  async subscribeToCutComment({ cutId }) {
+    const cutRef = this.db.collection('comments').doc(cutId);
+    return this.db.collection('comments').where('cut', '==', cutRef).get();
   }
 
   async login({ email, password }) {
