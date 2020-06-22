@@ -25,7 +25,7 @@ class Firebase {
   }
 
   async subscribeToCutComment({ cutId }) {
-    const cutRef = this.db.collection('comments').doc(cutId);
+    const cutRef = this.db.collection('cuts').doc(cutId);
     return this.db.collection('comments').where('cut', '==', cutRef).get();
   }
 
