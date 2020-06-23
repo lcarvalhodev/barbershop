@@ -6,6 +6,7 @@ export const Button = styled.button`
     color: white;
     border-radius: 4px;
     cursor: pointer;
+    white-space: nowrap;
     ${props => props.block ? 'diaplay:block; width: 100%;' : ''}
 
     &:hover{

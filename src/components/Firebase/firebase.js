@@ -24,9 +24,9 @@ class Firebase {
     })
   }
 
-  async subscribeToCutComment({ cutId }) {
+  subscribeToCutComment({ cutId, onSnapshot }) {
     const cutRef = this.db.collection('cuts').doc(cutId);
-    return this.db.collection('comments').where('cut', '==', cutRef).get();
+    return this.db.collection('comments').where('cut', '==', cutRef).onSnapshot(onSnapshot);
   }
 
   async login({ email, password }) {
