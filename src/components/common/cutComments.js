@@ -34,6 +34,7 @@ const CommentListItem = styled.div`
 export const CutComments = ({ firebase, cutId }) => {
 
     const [comments, setcomments] = useState([]);
+    const [commentText, setCommentText] = useState('');
 
     useEffect(() => {
         const unsubscribe = firebase.subscribeToCutComment({
@@ -61,11 +62,23 @@ export const CutComments = ({ firebase, cutId }) => {
 
     }, [])
 
+    function handlePostCommentSubmit(e) {
+        e.preventDefault();
+        console.log(commentText);
+        firebase.postComment({
+            text: commentText,
+            cutId
+        })
+    }
+
     return (
         <div>
-            <CommentForm >
-                <Input />
-                <Button >
+            <CommentForm onSubmit={handlePostCommentSubmit}>
+                <Input value={commentText} onChange={e => {
+                    e.persist();
+                    setCommentText(e.target.value);
+                }} />
+                <Button type="submit">
                     Comentar
                 </Button>
             </CommentForm>
